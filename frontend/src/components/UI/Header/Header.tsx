@@ -11,18 +11,47 @@ const Header = () => {
 
   return (
     <AppBar position='static'>
-      <Toolbar component='nav' sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Typography variant='h6' component={Link} color='white' sx={{ textDecoration: 'none' }} to='/'>
+      <Toolbar
+        component='nav'
+        sx={{ display: 'flex', justifyContent: 'space-between' }}
+      >
+        <Typography
+          variant='h6'
+          component={Link}
+          color='white'
+          sx={{ textDecoration: 'none' }}
+          to='/'
+        >
           FleaMarket
         </Typography>
         {user ? (
-          <UserMenu user={user} />
+          <Box display='flex' gap={1}>
+            <Button
+              component={Link}
+              variant='contained'
+              disableElevation
+              to='/new'
+            >
+              Sell
+            </Button>
+            <UserMenu user={user} />
+          </Box>
         ) : (
           <Box display='flex' gap={1}>
-            <Button component={Link} variant='contained' disableElevation to='/signin'>
+            <Button
+              component={Link}
+              variant='contained'
+              disableElevation
+              to='/signin'
+            >
               Sign In
             </Button>
-            <Button component={Link} variant='contained' disableElevation to='/signup'>
+            <Button
+              component={Link}
+              variant='contained'
+              disableElevation
+              to='/signup'
+            >
               Sign Up
             </Button>
           </Box>

@@ -57,8 +57,8 @@ const SignInForm = () => {
         return;
       }
 
-      if ((e as GenericError).error) {
-        enqueueSnackbar((e as GenericError).error, { variant: 'error' });
+      if ((e as GenericError).message) {
+        enqueueSnackbar((e as GenericError).message, { variant: 'error' });
       } else if ((e as Error).message) {
         enqueueSnackbar((e as Error).message, { variant: 'error' });
       }
@@ -80,7 +80,7 @@ const SignInForm = () => {
       <Typography component='h1' variant='h5'>
         Sign up
       </Typography>
-      <form noValidate onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <Grid container spacing={2}>
           <Grid size={12} minHeight={80}>
             <TextField

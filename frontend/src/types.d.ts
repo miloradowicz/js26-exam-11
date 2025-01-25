@@ -26,7 +26,7 @@ export interface Product {
 export type ProductBrief = Omit<Product, 'description' | 'category' | 'seller'>;
 
 export type ProductMutation = Omit<Product, '_id' | 'imageUrl' | 'seller'> & {
-  image: File;
+  image: File | null;
 };
 
 export interface Session {
