@@ -25,7 +25,7 @@ const schema = new mongoose.Schema<HydratedDocument<Fields>, Model, Methods>(
     username: {
       type: String,
       required: true,
-      unique: true,
+      unique: [true, 'Username is required'],
       validate: {
         validator: async function (this: HydratedDocument<Fields>, value: string): Promise<boolean> {
           return !this.isModified('username') || !(await User.findOne({ username: value }));
@@ -33,11 +33,11 @@ const schema = new mongoose.Schema<HydratedDocument<Fields>, Model, Methods>(
         message: 'Username already in use',
       },
     },
-    password: { type: String, required: true },
-    displayName: { type: String, required: true },
+    password: { type: String, required: [true, 'Password is required'] },
+    displayName: { type: String, required: [true, 'Display name is required'] },
     phoneNumber: {
       type: String,
-      required: true,
+      required: [true, 'Phone number is required'],
       unique: true,
       validate: {
         validator: async function (this: HydratedDocument<Fields>, value: string): Promise<boolean> {
