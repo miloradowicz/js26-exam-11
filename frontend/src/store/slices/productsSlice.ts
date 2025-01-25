@@ -74,6 +74,7 @@ const slice = createSlice({
         state.loading = false;
       })
       .addCase(loadProduct.rejected, (state, { error }) => {
+        state.currentProduct = null;
         if (error.message !== undefined) {
           state.lastError = { message: error.message };
         }
