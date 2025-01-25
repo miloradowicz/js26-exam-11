@@ -25,7 +25,9 @@ export interface Product {
 
 export type ProductBrief = Omit<Product, 'description' | 'category' | 'seller'>;
 
-export type ProductMutation = Omit<Product, '_id' | 'imageUrl' | 'seller'> & { image: File };
+export type ProductMutation = Omit<Product, '_id' | 'imageUrl' | 'seller'> & {
+  image: File;
+};
 
 export interface Session {
   message: string;
@@ -43,7 +45,7 @@ export interface SignUpMutation {
 }
 
 export interface GenericError {
-  error: string;
+  message: string;
 }
 
 export interface ValidationError {
