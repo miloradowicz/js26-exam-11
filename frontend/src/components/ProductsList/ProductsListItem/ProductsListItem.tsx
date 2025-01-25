@@ -1,16 +1,43 @@
-import { Card, CardActionArea, CardMedia, CardContent, Typography } from '@mui/material';
+import {
+  Card,
+  CardActionArea,
+  CardMedia,
+  CardContent,
+  Typography,
+} from '@mui/material';
+import { ProductBrief } from '../../../types';
+import { FC } from 'react';
+import { baseURL } from '../../../constants';
+import img404 from '../../../assets/images/404.svg';
+import { useNavigate } from 'react-router-dom';
 
-const ProductListItem = () => {
+interface Props {
+  item: ProductBrief;
+}
+
+const ProductListItem: FC<Props> = ({ item }) => {
+  const navigate = useNavigate();
+
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
-        <CardMedia component='img' height='140' image='/static/images/cards/contemplative-reptile.jpg' alt='green iguana' />
+    <Card sx={{ maxWidth: 345 }} variant='outlined'>
+      <CardActionArea onClick={() => navigate(`/products/${item._id}`)}>
+        <CardMedia
+          component='img'
+          height='140'
+          width='180'
+          image={
+            item.imageUrl
+              ? new URL(item.imageUrl, new URL('images/', baseURL)).href
+              : img404
+          }
+          alt={item.title}
+        />
         <CardContent>
           <Typography gutterBottom variant='h5' component='div'>
-            Lizard
+            {item.title}
           </Typography>
           <Typography variant='body2' sx={{ color: 'text.secondary' }}>
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica
+            {item.price}
           </Typography>
         </CardContent>
       </CardActionArea>

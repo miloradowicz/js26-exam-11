@@ -8,6 +8,7 @@ import {
   loadProductBriefsByCategory,
 } from '../../store/thunks/productsThunk';
 import { useParams } from 'react-router-dom';
+import ProductsList from '../../components/ProductsList/ProductsList';
 
 const Products = () => {
   const dispatch = useAppDispatch();
@@ -34,7 +35,9 @@ const Products = () => {
         <Grid size={4}>
           <CategoriesList />
         </Grid>
-        <Grid size={8}></Grid>
+        <Grid size={8}>
+          <ProductsList />
+        </Grid>
       </Grid>
     </Container>
   );
