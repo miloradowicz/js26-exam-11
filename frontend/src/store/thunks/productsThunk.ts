@@ -46,9 +46,14 @@ export const loadProduct = createAsyncThunk<
   return data as Product;
 });
 
-export const deleteProduct = createAsyncThunk(
-  'products/deleteProduct',
-  async (id: string) => {
-    await api.delete<null>(`products/${id}`);
-  }
-);
+export const deleteProduct = createAsyncThunk<
+  void,
+  string,
+  { state: RootState }
+>('products/deleteProduct', async (id, { getState }) => {
+  const token = getState().users.user?.token;
+
+  await api.delete<null>(`products/${id}`, {
+    headers: { Authorization: token },
+  });
+});

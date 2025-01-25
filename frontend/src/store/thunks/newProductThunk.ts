@@ -18,7 +18,9 @@ export const createProduct = createAsyncThunk<
     body.append('title', mutation.title);
     body.append('description', mutation.description);
     body.append('price', String(mutation.price));
-    body.append('image', mutation.image);
+    if (mutation.image) {
+      body.append('image', mutation.image);
+    }
     body.append('category', mutation.category);
 
     try {
@@ -27,7 +29,7 @@ export const createProduct = createAsyncThunk<
       });
     } catch (e) {
       if (isAxiosError(e) && e.response && e.response.status === 400) {
-        rejectWithValue(e.response.data);
+        return rejectWithValue(e.response.data);
       }
 
       throw e;

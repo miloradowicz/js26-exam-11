@@ -7,6 +7,7 @@ import {
   loadCategories,
   loadProduct,
   loadProductBriefs,
+  loadProductBriefsByCategory,
 } from '../thunks/productsThunk';
 
 interface State {
@@ -60,6 +61,20 @@ const slice = createSlice({
         state.loading = false;
       })
       .addCase(loadProductBriefs.rejected, (state, { error }) => {
+        if (error.message !== undefined) {
+          state.lastError = { message: error.message };
+        }
+        state.loading = false;
+      })
+      .addCase(loadProductBriefsByCategory.pending, (state) => {
+        state.lastError = null;
+        state.loading = true;
+      })
+      .addCase(loadProductBriefsByCategory.fulfilled, (state, { payload }) => {
+        state.products = payload;
+        state.loading = false;
+      })
+      .addCase(loadProductBriefsByCategory.rejected, (state, { error }) => {
         if (error.message !== undefined) {
           state.lastError = { message: error.message };
         }

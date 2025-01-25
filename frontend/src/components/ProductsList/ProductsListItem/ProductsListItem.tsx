@@ -20,7 +20,7 @@ const ProductListItem: FC<Props> = ({ item }) => {
 
   return (
     <Card sx={{ maxWidth: 345 }} variant='outlined'>
-      <CardActionArea onClick={() => navigate(`/products/${item._id}`)}>
+      <CardActionArea onClick={() => navigate(`/product/${item._id}`)}>
         <CardMedia
           component='img'
           height='140'

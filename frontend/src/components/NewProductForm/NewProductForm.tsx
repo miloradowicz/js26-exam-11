@@ -1,6 +1,7 @@
 import {
   Button,
   FormControl,
+  FormHelperText,
   Grid2 as Grid,
   InputLabel,
   MenuItem,
@@ -135,6 +136,7 @@ const NewProductForm = () => {
             fullWidth
             label='Image'
             name='image'
+            required
             buttonText='Upload'
             buttonProps={{ startIcon: <CloudUpload /> }}
             onChange={handleFileInputChange}
@@ -147,16 +149,22 @@ const NewProductForm = () => {
             <InputLabel id='category-label'>Category</InputLabel>
             <Select
               labelId='category-label'
+              name='category'
+              required
               value={data.category}
               label='Category'
               onChange={handleSelectChange}
+              error={!!getFieldError('imageUrl')}
             >
               {categories.map((x) => (
                 <MenuItem key={x._id} value={x._id}>
-                  x.name
+                  {x.name}
                 </MenuItem>
               ))}
             </Select>
+            {!!getFieldError('category') && (
+              <FormHelperText error>{getFieldError('category')}</FormHelperText>
+            )}
           </FormControl>
         </Grid>
       </Grid>

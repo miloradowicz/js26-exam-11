@@ -177,7 +177,7 @@ import Product from './models/Product';
         description: 'Cucumber, tomato, letuce splashed with water',
         price: 330,
         imageUrl: 'demo/image-172.jpg',
-        category: misc._id,
+        category: edibles._id,
         seller: s._id,
       },
       {
@@ -185,7 +185,7 @@ import Product from './models/Product';
         description: 'Sticky (300 ml)',
         price: 1030,
         imageUrl: 'demo/image-270.jpg',
-        category: misc._id,
+        category: edibles._id,
         seller: s._id,
       }
     );

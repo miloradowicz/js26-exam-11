@@ -11,6 +11,7 @@ import { selectLastError } from './store/slices/productsSlice';
 import { useEffect } from 'react';
 import Page404 from './containers/Page404/Page404';
 import NewProduct from './containers/NewProduct/NewProduct';
+import ProductDetailed from './containers/ProductDetailed/ProductDetailed';
 
 const App = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -29,6 +30,8 @@ const App = () => {
       <Container sx={{ py: 3, px: 2 }}>
         <Routes>
           <Route path='/' element={<Products />} />
+          <Route path='/categories/:id' element={<Products />} />
+          <Route path='/product/:id' element={<ProductDetailed />} />
           <Route path='/new' element={<NewProduct />} />
           <Route path='/signin' element={<SignIn />} />
           <Route path='/signup' element={<SignUp />} />
